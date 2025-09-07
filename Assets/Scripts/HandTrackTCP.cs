@@ -103,7 +103,7 @@ public class HandTrackTCP : MonoBehaviour
             string boneName = b.Transform.gameObject.name;
 
             // Wrist
-            if (boneName.Contains("Wrist"))
+            if (boneName.Contains("Palm"))
             {
                 handData.Wrist.Add(new BoneData
                 {
