@@ -15,8 +15,8 @@ public class PCAHandBlend : MonoBehaviour
 
     private float PCAX = 0f;
     private float PCAY = 0f;
-
-    public int port = 5005; // must match PCA_PORT in Python
+    public string serverIP = "192.168.0.33";
+    public int serverPort = 11112;
 
     void Start()
     {
@@ -30,9 +30,13 @@ public class PCAHandBlend : MonoBehaviour
     {
         try
         {
-            listener = new TcpListener(IPAddress.Any, port);
+            IPAddress ipAddress = IPAddress.Parse(serverIP);//Parse IP
+
+            //listener = new TcpListener(ipAddress, serverPort);
+            listener = new TcpListener(IPAddress.Any, serverPort);
+
             listener.Start();
-            Debug.Log($"[TCP] Listening on port {port}");
+            Debug.Log($"[TCP] Listening on port {serverPort}");
 
             while (running)
             {

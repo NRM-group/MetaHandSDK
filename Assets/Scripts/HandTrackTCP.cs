@@ -18,7 +18,7 @@ using System;
 public class BoneData
 {
     public string BoneID; // Bone name "Metacarpal", "tip"
-    public Quaternion rotation;
+    public Quaternion rotation; //x,y,z,w
 }
 
 [System.Serializable]
@@ -51,13 +51,14 @@ public class HandTrackTCP : MonoBehaviour
     private TcpClient client;
     private NetworkStream stream;
     public string serverIP = "127.0.0.1";
-    public int serverPort = 11112;
+    //public string serverIP = "192.168.0.33";
+    public int serverPort = 11113;
 
     // Start is called before the first frame update
     void Start()
     {
-        QualitySettings.vSyncCount = 0;     // disable VSync
-        Application.targetFrameRate = 60;   // lock Update() to ~30 calls/sec
+        //QualitySettings.vSyncCount = 0;     // disable VSync
+        //Application.targetFrameRate = 60;   // lock Update() to ~30 calls/sec
 
         try
         {
@@ -89,13 +90,13 @@ public class HandTrackTCP : MonoBehaviour
 
         // Create lookup table for fingers
         Dictionary<string, FingerData> fingerMap = new Dictionary<string, FingerData>()
-    {
-        { "0", new FingerData{ FingerID = "0" } }, // Thumb
-        { "1", new FingerData{ FingerID = "1" } }, // Index
-        { "2", new FingerData{ FingerID = "2" } }, // Middle
-        { "3", new FingerData{ FingerID = "3" } }, // Ring
-        { "4", new FingerData{ FingerID = "4" } }  // Little/Pinky
-    };
+        {
+            { "0", new FingerData{ FingerID = "0" } }, // Thumb
+            { "1", new FingerData{ FingerID = "1" } }, // Index
+            { "2", new FingerData{ FingerID = "2" } }, // Middle
+            { "3", new FingerData{ FingerID = "3" } }, // Ring
+            { "4", new FingerData{ FingerID = "4" } }  // Little/Pinky
+        };
 
         int boneIndex = 0;
         foreach (var b in skeleton.Bones)
@@ -121,19 +122,29 @@ public class HandTrackTCP : MonoBehaviour
                 else if (boneName.Contains("Ring")) fingerKey = "3";
                 else if (boneName.Contains("Little") || boneName.Contains("Pinky")) fingerKey = "4";
 
-                if (fingerKey != null)
+                if (fingerKey == "0" && ParseThumbBoneIndex(boneName, out boneIndex)) //Thumb
                 {
-                    if (boneIndex > 3)
-                    {
-                        boneIndex = 0;
-                        continue;
-                    }
+                    fingerMap[fingerKey].bones.Add(new BoneData
+                        {
+                            BoneID = boneIndex.ToString(),
+                            rotation = b.Transform.rotation //x,y,z,
+                            //rotation = b.Transform.localRotation //x,y,z,         \
+                    });
+                    //Debug.Log(boneIndex);    //Test
+                    //Debug.Log(boneName);    //Test
+                }
+
+                else if (fingerKey != null && ParseFingerBoneIndex(boneName, out boneIndex))   //Fingers
+                {
                     fingerMap[fingerKey].bones.Add(new BoneData
                     {
                         BoneID = boneIndex.ToString(),
-                        rotation = b.Transform.rotation
+                        rotation = b.Transform.rotation //x,y,z,w
+                        //rotation = b.Transform.localRotation //x,y,z,w
+
                     });
-                    boneIndex++;
+                    //Debug.Log(boneIndex);    //Test
+                    //Debug.Log(boneName);    //Test
                 }
             }
         }
@@ -150,6 +161,28 @@ public class HandTrackTCP : MonoBehaviour
         SendTCP(json);
     }
 
+    bool ParseFingerBoneIndex(string boneName, out int boneIndex)
+    {
+        if (boneName.Contains("Metacarpal")) { boneIndex = 0; return true; }
+        if (boneName.Contains("Proximal")) { boneIndex = 1; return true; }
+        if (boneName.Contains("Intermediate")) { boneIndex = 2; return true; }
+        if (boneName.Contains("Distal")) { boneIndex = 3; return true; }
+
+        boneIndex = -1;
+        return false;
+    }
+    bool ParseThumbBoneIndex(string boneName, out int boneIndex)
+    {
+        if (boneName.Contains("Metacarpal")) { boneIndex = 0; return true; }
+        if (boneName.Contains("Proximal")) { boneIndex = 1; return true; }
+        if (boneName.Contains("Distal")) { boneIndex = 3; return true; }
+
+        boneIndex = -1;
+        return false;
+    }
+
+
+
     void SendTCP(string message)
     {
         if (stream != null && stream.CanWrite)
@@ -165,7 +198,7 @@ public class HandTrackTCP : MonoBehaviour
         if (stream != null) stream.Close();
         if (client != null) client.Close();
 
-        Debug.Log("TCP closede\n");
+        Debug.Log("TCP closed\n");
     }
 }
 
