@@ -45,31 +45,10 @@ public class HandTrackTCP : MonoBehaviour
     public OVRSkeleton leftHandSkeleton;
     public OVRSkeleton rightHandSkeleton;
 
-    private float step;
-
-    //TCP
-    private TcpClient client;
-    private NetworkStream stream;
-    public string serverIP = "127.0.0.1";
-    //public string serverIP = "192.168.0.33";
-    public int serverPort = 11113;
-
     // Start is called before the first frame update
     void Start()
     {
-        //QualitySettings.vSyncCount = 0;     // disable VSync
-        //Application.targetFrameRate = 60;   // lock Update() to ~30 calls/sec
 
-        try
-        {
-            client = new TcpClient(serverIP, serverPort);
-            stream = client.GetStream();
-            Debug.Log("Connected to TCP server.");
-        }
-        catch (SocketException e)
-        {
-            Debug.LogError($"TCP Connection error: {e.Message}");
-        }
     }
 
     // Update is called once per frame
@@ -185,18 +164,18 @@ public class HandTrackTCP : MonoBehaviour
 
     void SendTCP(string message)
     {
-        if (stream != null && stream.CanWrite)
+        if (TCPHandler.stream != null && TCPHandler.stream.CanWrite)
         {
             byte[] data = Encoding.UTF8.GetBytes(message + "\n"); // newline helps parsing (?)
-            stream.Write(data, 0, data.Length);
+            TCPHandler.stream.Write(data, 0, data.Length);
         }
     }
 
 
     void OnApplicationQuit()
     {
-        if (stream != null) stream.Close();
-        if (client != null) client.Close();
+        if (TCPHandler.stream != null) TCPHandler.stream.Close();
+        if (TCPHandler.client != null) TCPHandler.client.Close();
 
         Debug.Log("TCP closed\n");
     }

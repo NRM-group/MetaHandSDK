@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -8,15 +9,12 @@ using UnityEngine;
 public class PCAHandBlend : MonoBehaviour
 {
     public Animator handAnimator; // Assign in Inspector
-
-    private TcpListener listener;
     private Thread listenerThread;
     private bool running = false;
 
     private float PCAX = 0f;
     private float PCAY = 0f;
-    public string serverIP = "192.168.0.33";
-    public int serverPort = 11112;
+
 
     void Start()
     {
@@ -30,21 +28,12 @@ public class PCAHandBlend : MonoBehaviour
     {
         try
         {
-            IPAddress ipAddress = IPAddress.Parse(serverIP);//Parse IP
-
-            //listener = new TcpListener(ipAddress, serverPort);
-            listener = new TcpListener(IPAddress.Any, serverPort);
-
-            listener.Start();
-            Debug.Log($"[TCP] Listening on port {serverPort}");
-
             while (running)
             {
-                using (TcpClient client = listener.AcceptTcpClient())
-                using (NetworkStream stream = client.GetStream())
+                if (TCPHandler.stream != null && TCPHandler.stream.DataAvailable)
                 {
                     byte[] buffer = new byte[1024];
-                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                    int bytesRead = TCPHandler.stream.Read(buffer, 0, buffer.Length);
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
 
                     string[] parts = message.Split(',');
@@ -89,6 +78,5 @@ public class PCAHandBlend : MonoBehaviour
     void OnApplicationQuit()
     {
         running = false;
-        listener?.Stop();
     }
 }
