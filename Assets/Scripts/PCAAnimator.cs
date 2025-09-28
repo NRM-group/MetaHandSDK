@@ -6,7 +6,14 @@ public class HandAnimator : MonoBehaviour
     public Animator handAnimator; // Assign in Inspector
     public enum HandSide { Left, Right }
     public HandSide side;          // pick Left or Right per GameObject
-    private float x, y;
+    private float Rx, Ry;
+    private float Lx, Ly;
+    private float smoothRx, smoothRy;
+    private float smoothLx, smoothLy;
+
+    [Header("Smoothing Settings")]
+    [Range(0f, 20f)]
+    public float smoothFactor = 10f; // higher = faster response, lower = smoother
 
 
     void Update()
@@ -16,16 +23,20 @@ public class HandAnimator : MonoBehaviour
         // Select PCA values based on hand side
         if (side == HandSide.Right)
         {
-            (x, y) = receiver.GetRightPCA();
+            (Rx, Ry) = receiver.GetRightPCA();
+            smoothRx += (Rx - smoothRx) * smoothFactor * Time.deltaTime;
+            smoothRy += (Ry - smoothRy) * smoothFactor * Time.deltaTime;
+            handAnimator.SetFloat("PCAX", Rx);
+            handAnimator.SetFloat("PCAY", Ry);
         }
         else // Left hand
         {
-            (x, y) = receiver.GetLeftPCA();
+            (Lx, Ly) = receiver.GetLeftPCA();
+            smoothLx += (Lx - smoothLx) * smoothFactor * Time.deltaTime;
+            smoothLy += (Ly - smoothLy) * smoothFactor * Time.deltaTime;
+            handAnimator.SetFloat("PCAX", Lx);
+            handAnimator.SetFloat("PCAY", Ly);
         }
-
-        //Debug.Log($"PCA hand anim received Å® X={x}, Y={y}");
-        handAnimator.SetFloat("PCAX", x);
-        handAnimator.SetFloat("PCAY", y);
 
     }
 }

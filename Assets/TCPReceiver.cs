@@ -35,7 +35,7 @@ public class Receiver : MonoBehaviour
                     byte[] buffer = new byte[1024];
                     int bytesRead = TCPHandler.stream.Read(buffer, 0, buffer.Length);
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
-                    Debug.Log(message);
+                    //Debug.Log(message);
 
                     string[] parts = message.Split(',');
                     if (parts.Length == 3)
@@ -76,15 +76,6 @@ public class Receiver : MonoBehaviour
         }
     }
 
-    
-    void Update()
-    {
-        var (lx, ly) = GetLeftPCA();
-        var (rx, ry) = GetRightPCA();
-
-        // Optional debug log
-        Debug.Log($"PCA receiver Received Å® rx={rx}, ry={ry} lx={lx}, ly={ly}");
-    }
     
     //Public getters
     public (float x, float y) GetRightPCA()
