@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!206 &-6726380874820695709
+--- !u!206 &-4927808995592219158
 BlendTree:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,41 +9,81 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 1637092238785791823, guid: 844e30dee761879479ce4966dbc3c000, type: 3}
+    m_Motion: {fileID: 4786020616356835982, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
     m_Threshold: 0
-    m_Position: {x: 0, y: 0}
+    m_Position: {x: 0.022656, y: 0.3379326}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -7296475975884040748, guid: 844e30dee761879479ce4966dbc3c000, type: 3}
-    m_Threshold: 0.25
-    m_Position: {x: -0.81667465, y: 0.22149646}
+    m_Motion: {fileID: -9041910445213290402, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
+    m_Threshold: 0.1
+    m_Position: {x: -0.08080004, y: -0.51734}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 4938249390811498427, guid: 844e30dee761879479ce4966dbc3c000, type: 3}
+    m_Motion: {fileID: 7340189961000255898, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
+    m_Threshold: 0.2
+    m_Position: {x: 0.02289518, y: 0.6104809}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -7009255448744728534, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
+    m_Threshold: 0.3
+    m_Position: {x: -0.04485753, y: -0.7952645}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7104737982198513026, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
+    m_Threshold: 0.4
+    m_Position: {x: -0.01167326, y: 0.11711139}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -1616497825630316547, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
     m_Threshold: 0.5
-    m_Position: {x: 0.9036806, y: -0.16277485}
+    m_Position: {x: 0.7775416, y: -0.9106697}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 9169663285709758573, guid: 844e30dee761879479ce4966dbc3c000, type: 3}
-    m_Threshold: 0.75
-    m_Position: {x: -0.05682669, y: -0.69545096}
+    m_Motion: {fileID: 626460910584364698, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
+    m_Threshold: 0.6
+    m_Position: {x: 0.5305893, y: -0.491138}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -4816669937944350679, guid: 844e30dee761879479ce4966dbc3c000, type: 3}
-    m_Threshold: 1
-    m_Position: {x: -0.4342207, y: -0.25142613}
+    m_Motion: {fileID: 3344688050412581505, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
+    m_Threshold: 0.7
+    m_Position: {x: 0.8243677, y: -0.2231571}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -1011110369817601995, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
+    m_Threshold: 0.8
+    m_Position: {x: -0.5770469, y: -0.1174317}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -7322717802950062200, guid: 6f811e844725374418d8172dc41db6ca, type: 3}
+    m_Threshold: 0.9
+    m_Position: {x: -0.13877922, y: -0.18572631}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -51,36 +91,10 @@ BlendTree:
   m_BlendParameter: PCAX
   m_BlendParameterY: PCAY
   m_MinThreshold: 0
-  m_MaxThreshold: 1
+  m_MaxThreshold: 0.9
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 2
---- !u!1102 &-2591750469739976513
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: -6726380874820695709}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -131,8 +145,8 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -2591750469739976513}
-    m_Position: {x: 237, y: 60, z: 0}
+    m_State: {fileID: 4516176862611457023}
+    m_Position: {x: 260, y: 160, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -142,4 +156,30 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -2591750469739976513}
+  m_DefaultState: {fileID: 4516176862611457023}
+--- !u!1102 &4516176862611457023
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Blend Tree 0
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -4927808995592219158}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
